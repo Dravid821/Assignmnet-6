@@ -1,0 +1,47 @@
+.card {
+    width: 300px !important;
+    height: 350px !important;
+    justify-content: space-between;
+    box-shadow: -1px 10px 30px -3px rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin: 8px;
+  }
+  .page {
+    padding: 20px;
+    position: absolute;
+  }
+  img{
+    height: 200px;
+    margin-right: 10px;
+    /* max-width: ; */
+  }
+  body {
+    background-color: #eee;
+  }
+  .shade{
+    /* box-shadow: -16px 17px 56px -3px rgba(0,0,0,0.75); */
+    border-radius: 10px;
+    margin: 8px;
+  }
+  .right{
+    inset: none;
+  }
+  .shade1{
+    box-shadow: -16px 17px 56px -3px rgba(0,0,0,0.75);
+    border-radius: 1px;
+    margin: 2px;
+  }
+  .caraimg{
+    height: 600px;
+  }
+  .card{
+    max-width: 700px !important;
+  }
+.card1{
+  width: 130px !important;
+  height: 300px !important;
+  justify-content: space-between;
+  border-radius: 10px;
+  margin: 8px;
+  box-shadow: 0px 10px 30px 0px rgba(0, 0, 0, 0.20);
+}
