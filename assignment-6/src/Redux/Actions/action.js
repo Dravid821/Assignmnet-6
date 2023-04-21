@@ -3,6 +3,8 @@ import {
   FETCH_DATA_SUCCESS,
   FETCH_DATA_COME,
   FETCH_DATA_ERROR,
+  ADD_TO_CART,
+  REMOVE_TO_CART,
 } from "../Constant";
 let url = `https://dummyjson.com/products`;
 let url1 = (id = 1) => `https://dummyjson.com/products/${id}`;
@@ -29,6 +31,20 @@ export const setPage = (page) => {
     payload: page,
   };
 };
+export const Addtocart = (item) => {
+  return {
+      type: ADD_TO_CART,
+      payload: item
+
+  }
+}
+export const removetocart = (item) => {
+  return {
+      type: REMOVE_TO_CART,
+      payload: item,
+
+  }
+}
 //Api data fetch
 export const carddata = (skip) => {
   return (dispatch) => {

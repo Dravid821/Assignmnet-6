@@ -1,7 +1,9 @@
 import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { MDBCard, MDBCardBody, MDBCardImage } from "mdb-react-ui-kit";
-import "../asset/ProductData.scss";
+import { NavLink } from "react-router-dom";
+
+import "../Asset/ProductData.scss";
 const CardData = ({ item }) => {
   return (
     <MDBCard key={item.id} className="card">
@@ -14,7 +16,9 @@ const CardData = ({ item }) => {
         </div>
         <div class="d-flex justify-content-center pt-4">
           <button type="button" class="btn btn-dark ">
-            View More
+            <NavLink to={`/product/${item.id}`} className="slink text-white">
+              View More
+            </NavLink>
           </button>
         </div>
       </MDBCardBody>

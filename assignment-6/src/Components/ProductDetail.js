@@ -5,25 +5,32 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import {ApiData} from "../Redux/Actions/action"
-// import { NavLink } from "react-router-dom";
+import { ApiData } from "../Redux/Actions/action";
+import { NavLink } from "react-router-dom";
+import RatingComponent from "../View/Pages/Shopping/StartRating"
 // import { useNavigate } from "react-router-dom";
 import Carousal from "./Carousal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Addtocart,removetocart } from "../Redux/Actions/action";
 const ProductDetail = () => {
   const data = useSelector((state) => state.datareducer.user);
-  console.log(data.products)
+  let loggin = JSON.parse(localStorage.getItem("isLogin"));
+  console.log(data);
   const { id } = useParams();
   const dispatch = useDispatch();
-//   const navigate = useNavigate();
+  //   const navigate = useNavigate();
   useEffect(() => {
     if (isNaN(id)) {
-    //   navigate("*");
+      //   navigate("*");
       return;
     }
     dispatch(ApiData(id));
   }, []);
+  const sendcart = (items)=>{
+    const CartItem = {...items}
+    dispatch(Addtocart(items))
+   }
   const BackToShop = () => {
     // navigate("/");
   };
@@ -35,7 +42,7 @@ const ProductDetail = () => {
           <section key={id}>
             <div className="container">
               <div className="row pt-5">
-              <Carousal images={data.images} />
+                <Carousal images={data.images} />
                 <div className="col-md-6 col-sm-12 mt-4">
                   <div className="col-md-12 col-sm-12">
                     <div className="card-body">
@@ -53,10 +60,9 @@ const ProductDetail = () => {
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                           <span>
-                            <span class="badge bg-success">
+                            <span class="badge bg-warning">
                               <div>
-                                {data.rating}
-                                <StarIcon fontSize="small" />
+                                <RatingComponent rating={data.rating}/>
                               </div>
                             </span>
                           </span>
@@ -72,31 +78,45 @@ const ProductDetail = () => {
                           <h4 className="mb-1 me-1">${data.price}</h4>
                         </div>
                       </div>
-                      <div class="d-flex  total font-weight-bold mt-4">
-                        <span>Description :&nbsp;{data.description}</span>
+                      <div class="d-flex text-start total font-weight-bold mt-4">
+                        <span>Description: {data.description}</span>
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-12 col-sm-12 ">
-                    <div className="pt-5">
-                      {/* <NavLink> */}
-                        <button
-                          className="btn btn-primary btn-md m-2"
-                          type="button"
-                        >
-                          Add To Cart
-                        </button>
-                      {/* </NavLink> */}
-                      {/* <NavLink to={`/product`}> */}
-                        <button
-                          onClick={BackToShop}
-                          className="btn btn-outline-primary btn-md m-2"
-                          type="button"
-                        >
-                          <ShoppingCartIcon />
-                          Back To Shopping Page
-                        </button>
-                      {/* </NavLink> */}
+                  <div className="col-md-12 col-sm-12 pt-5">
+                    <div className="d-flex">
+                      {loggin ? (
+                        <>
+                            <button
+                              className="btn btn-primary btn-md m-2"
+                              type="button"
+                              onClick={()=>sendcart(data)}
+                            >
+                              Add To Cart
+                            </button>
+                          <NavLink to={`/product`}>
+                            <button
+                              onClick={BackToShop}
+                              className="btn btn-outline-primary btn-md m-2"
+                              type="button"
+                            >
+                              <ShoppingCartIcon />
+                              Back To Shopping Page
+                            </button>
+                          </NavLink>
+                        </>
+                      ) : (
+                        <NavLink to={`/product`}>
+                          <button
+                            onClick={BackToShop}
+                            className="btn btn-outline-primary btn-md m-2"
+                            type="button"
+                          >
+                            <ShoppingCartIcon />
+                            Back To Shopping Page
+                          </button>
+                        </NavLink>
+                      )}
                     </div>
                   </div>
                 </div>
