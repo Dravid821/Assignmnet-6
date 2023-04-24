@@ -4,6 +4,7 @@ import {
   FETCH_DATA_ERROR,
   ADD_TO_CART,
   REMOVE_TO_CART,
+  REMOVE,
 } from "../Constant";
 const initialState = {
   user: [],
@@ -11,6 +12,7 @@ const initialState = {
   err: null,
   carts: [],
   qnty: 0,
+  totalPrice: 0,
 };
 export const datareducer = (state = initialState, action) => {
   switch (action.type) {
@@ -35,20 +37,35 @@ export const datareducer = (state = initialState, action) => {
         err: action.payload,
       };
     case ADD_TO_CART:
-      const IteamIndex = state.carts.findIndex(
-        (iteam) => iteam.id === action.payload.id
+      const itemIndex = state.carts.findIndex(
+        (item) => item.id === action.payload.id
       );
-      if (IteamIndex >= 0) {
-        state.carts[IteamIndex].qnty += 1;
+      if (itemIndex >= 0) {
+        // If the item already exists in the cart, update the quantity and total price
+        const updatedCart = [...state.carts];
+        const updatedItem = { ...updatedCart[itemIndex] };
+        updatedItem.qnty += 1;
+        updatedItem.totalPrice = updatedItem.qnty * updatedItem.price;
+        updatedCart[itemIndex] = updatedItem;
+
         return {
           ...state,
-          carts: [...state.carts],
+          carts: updatedCart,
+          qnty: state.qnty + 1,
+          totalPrice: state.totalPrice + updatedItem.price,
         };
       } else {
-        const temp = { ...action.payload, qnty: 1 };
+        // If the item does not exist in the cart, add it to the cart
+        const newItem = {
+          ...action.payload,
+          qnty: 1,
+          totalPrice: action.payload.price,
+        };
         return {
           ...state,
-          carts: [...state.carts, temp],
+          carts: [...state.carts, newItem],
+          qnty: state.qnty + 1,
+          totalPrice: state.totalPrice + newItem.price,
         };
       }
 
@@ -56,24 +73,28 @@ export const datareducer = (state = initialState, action) => {
       const cartItemIndex = state.carts.findIndex(
         (item) => item.id === action.payload.id
       );
-
       if (cartItemIndex >= 0) {
         const updatedCart = [...state.carts];
         const existingCartItem = updatedCart[cartItemIndex];
 
         if (action.payload.isIncrement) {
           existingCartItem.qnty++;
+          return {
+            ...state,
+            carts: updatedCart,
+            totalPrice: state.totalPrice + existingCartItem.price, // Update total price
+          };
         } else {
           existingCartItem.qnty--;
           if (existingCartItem.qnty === 0) {
             updatedCart.splice(cartItemIndex, 1);
           }
+          return {
+            ...state,
+            carts: updatedCart,
+            totalPrice: state.totalPrice - existingCartItem.price, // Update total price
+          };
         }
-
-        return {
-          ...state,
-          carts: updatedCart,
-        };
       } else {
         return {
           ...state,
@@ -84,9 +105,23 @@ export const datareducer = (state = initialState, action) => {
               qnty: 1,
             },
           ],
+          totalPrice: state.totalPrice + action.payload.price, // Update total price
         };
       }
-
+      case REMOVE:
+        const itemIdToRemove = action.payload.id; // Id of the item to be removed
+        const itemToRemove = state.carts.find(
+          (item) => item.id === itemIdToRemove
+        ); // Find the item to be removed from the state
+        const updatedCart = state.carts.filter(
+          (item) => item.id !== itemIdToRemove
+        ); // Filter out the item to be removed from the state.carts array
+        return {
+          ...state,
+          carts: updatedCart,
+          qnty: state.qnty - itemToRemove.qnty, // Update quantity
+          totalPrice: state.totalPrice - itemToRemove.totalPrice, // Update total price
+        };
     default:
       return {
         ...state,

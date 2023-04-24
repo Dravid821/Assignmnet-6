@@ -5,6 +5,7 @@ import {
   FETCH_DATA_ERROR,
   ADD_TO_CART,
   REMOVE_TO_CART,
+  REMOVE,
 } from "../Constant";
 let url = `https://dummyjson.com/products`;
 let url1 = (id = 1) => `https://dummyjson.com/products/${id}`;
@@ -38,10 +39,17 @@ export const Addtocart = (item) => {
 
   }
 }
-export const removetocart = (item) => {
+export const removetocart = (id) => {
   return {
       type: REMOVE_TO_CART,
-      payload: item,
+      payload: id,
+
+  }
+}
+export const remove = (id) => {
+  return {
+      type: REMOVE_TO_CART,
+      payload: id,
 
   }
 }

@@ -7,7 +7,7 @@ import "../Asset/ProductData.scss";
 const CardData = ({ item }) => {
   return (
     <MDBCard key={item.id} className="card">
-      <MDBCardImage src={item.thumbnail} className="shade img" height={500} />
+      <MDBCardImage src={item.thumbnail} className="shade img1" height={500} />
       <MDBCardBody>
         <div className="d-flex justify-content-between ">
           <span className="mb-0">{item.title}</span>

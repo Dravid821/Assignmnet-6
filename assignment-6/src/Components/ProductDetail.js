@@ -8,7 +8,7 @@ import Spinner from "react-bootstrap/Spinner";
 import { ApiData } from "../Redux/Actions/action";
 import { NavLink } from "react-router-dom";
 import RatingComponent from "../View/Pages/Shopping/StartRating"
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Carousal from "./Carousal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ import { Addtocart,removetocart } from "../Redux/Actions/action";
 const ProductDetail = () => {
   const data = useSelector((state) => state.datareducer.user);
   let loggin = JSON.parse(localStorage.getItem("isLogin"));
-  console.log(data);
+  console.log("id vise0",data);
   const { id } = useParams();
   const dispatch = useDispatch();
   //   const navigate = useNavigate();
@@ -27,9 +27,9 @@ const ProductDetail = () => {
     }
     dispatch(ApiData(id));
   }, []);
-  const sendcart = (items)=>{
-    const CartItem = {...items}
-    dispatch(Addtocart(items))
+  const sendcart = (item)=>{
+    const CartItem = {...data}
+    dispatch(Addtocart(CartItem))
    }
   const BackToShop = () => {
     // navigate("/");
@@ -80,6 +80,9 @@ const ProductDetail = () => {
                       </div>
                       <div class="d-flex text-start total font-weight-bold mt-4">
                         <span>Description: {data.description}</span>
+                      </div>
+                      <div class="d-flex text-start total font-weight-bold mt-4">
+                        <span>qnty: {data.qnty}</span>
                       </div>
                     </div>
                   </div>

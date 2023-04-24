@@ -1,0 +1,168 @@
+{/* <div>
+        <h2 className="text-dark">Cart Items</h2>
+        <MDBTableHead className=" container d-flex justify-content-between">
+          <tr >
+            <th scope="col">ITEMS</th>
+            <th scope="col">PRICE</th>
+            <th scope="col">QUANTITY</th>
+            <th scope="col">SUBTOTAL</th>
+            <th scope="col">REMOVE</th>
+          </tr>
+        </MDBTableHead>
+        {cartItems.length === 0 ? (
+          <h2 className="mt-5 text-secondary">Cart Items is Empty</h2>
+        ) : (
+          cartItems.map((item) => {
+            return (
+              <div className="container bg-light" key={item.id}>
+                <div className="row d-flex justify-content-center">
+                  <MDBTable responsive>
+                    <MDBTableBody>
+                      <tr>
+                        <th scope="row">
+                          <div className="d-flex align-items-center">
+                            <img
+                              src={item.thumbnail}
+                              fluid
+                              className="rounded-3"
+                              style={{ width: "100px", height: "80px" }}
+                              alt="Book"
+                            />
+                            <div className="flex-column ms-4">{item.title}</div>
+                          </div>
+                        </th>
+                        <td className="align-middle">
+                          <p className="mb-0" style={{ fontWeight: "500" }}>
+                            ${item.price}
+                          </p>
+                        </td>
+                        <td className="align-middle">
+                          <div className="d-flex justify-content-center gap-3">
+                            <button
+                              onClick={() => decrement(item)}
+                              className="btn btn-secondary"
+                            >
+                              -
+                            </button>
+                            <span className="text-primary">{item.qnty}</span>
+                            <button
+                              className="btn btn-secondary"
+                              onClick={() => increment(item)}
+                            >
+                              +
+                            </button>
+                          </div>
+                        </td>
+                        <td className="align-middle">
+                          <span>${item.qnty * item.price}</span>
+                        </td>
+                      </tr>
+                    </MDBTableBody>
+                  </MDBTable> */}
+      {/* <MDBCard
+                    className="shadow-2-strong mb-5 mb-lg-0 "
+                    style={{ borderRadius: "16px" }}
+                  >
+                    <MDBCardBody className="p-4">
+                      <MDBRow>
+                        <MDBCol className="mb-4 mb-md-0">
+                          <MDBCol>
+                            <div
+                              className="d-flex justify-content-between"
+                              style={{ fontWeight: "500" }}
+                            >
+                              <p className="mb-2">Subtotal</p>
+                              <p className="mb-2">$23.49</p>
+                            </div>
+
+                            <div
+                              className="d-flex justify-content-between"
+                              style={{ fontWeight: "500" }}
+                            >
+                              <p className="mb-0">Shipping</p>
+                              <p className="mb-0">$2.99</p>
+                            </div>
+
+                            <hr className="my-4" />
+
+                            <div
+                              className="d-flex justify-content-between mb-4"
+                              style={{ fontWeight: "500" }}
+                            >
+                              <p className="mb-2">Total (tax included)</p>
+                              <p className="mb-2">$26.48</p>
+                            </div>
+
+                            <MDBBtn block size="lg">
+                              <div className="d-flex justify-content-between">
+                                <span>Checkout</span>
+                                <span>$26.48</span>
+                              </div>
+                            </MDBBtn>
+                          </MDBCol>
+                        </MDBCol>
+                      </MDBRow>
+                    </MDBCardBody>
+                  </MDBCard> */}
+      {/* <Card
+                    className="my-2"
+                    style={{
+                      width: "23rem",
+                    }}
+                  >
+                    <CardHeader className="">
+                      <h5 className="text-secondary">{item.title}</h5>
+                    </CardHeader>
+                    <CardBody>
+                      <div>
+                        <CardText className="btn text-dark">
+                          <Label className="btn-outline-dark text-dark">
+                            <span className="text-secondary">QUANTITY:</span>
+                            <span className="text-primary">{item.qnty}</span>
+                          </Label>
+                        </CardText>
+                      </div>
+                      <CardText className="btn text-dark">
+                        <Label className="btn-outline-dark text-dark">
+                          <span className="text-secondary">PRICE:</span>${item.price}
+                        </Label>
+                      </CardText>
+                      <div className="d-flex justify-content-center gap-3">
+                        <button
+                          onClick={() => decrement(item)}
+                          className="btn btn-secondary"
+                        >
+                          -
+                        </button>
+                        <button
+                          className="btn btn-secondary"
+                          onClick={() => increment(item)}
+                        >
+                          +
+                        </button>
+                      </div>
+                      <div className="btn btn-dark mt-4">
+                        total:${item.qnty * item.price}
+                      </div>
+                    </CardBody>
+                  </Card> */}
+      {/* </div>
+              </div>
+            );
+          })
+        )}
+        <NavLink style={{ textDecoration: "none" }} to={`/product`}>
+          <button
+            className="btn btn-secondary navbar-brand h4 text-white mt-5"
+            color="none"
+          >
+            <img
+              src="https://static.vecteezy.com/system/resources/previews/015/078/042/original/continue-shopping-glyph-icon-vector.jpg"
+              className="img-fluid"
+              width="40px"
+              alt="Continue Shopping"
+            />{" "}
+            Continue Shopping
+          </button>
+        </NavLink>
+      </div> */}

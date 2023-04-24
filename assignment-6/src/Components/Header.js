@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Button } from "reactstrap";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Badge } from "@chakra-ui/react";
@@ -8,6 +9,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 const Header = () => {
   let loggin = JSON.parse(localStorage.getItem("isLogin"));
   const navigate = useNavigate();
+  const items= useSelector((state) => state.datareducer.carts);
   //logout Funcnality
   const logout = () => {
     localStorage.setItem("isLogin", false);
@@ -46,8 +48,8 @@ const Header = () => {
                 <Button outline color="secondary" >
                   Mycart
                   &nbsp;
-                  <Badge >
-                    <ShoppingCartIcon/>
+                  <Badge  badgeContent={items.length} color="primary">
+                     <ShoppingCartIcon/>
                   </Badge>
                 </Button>
                 </NavLink>
