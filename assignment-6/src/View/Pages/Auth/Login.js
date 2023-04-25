@@ -79,7 +79,7 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <Box boxShadow={"lg"} p={8}>
             <Stack spacing={4}>
-              <FormControl id="email">
+              <FormControl id="email" className="text-start">
                 <FormLabel>Email address&nbsp;<span className="text-danger">*</span></FormLabel>
                 <Input
                   type="email"
@@ -95,7 +95,7 @@ export default function Login() {
                   <p className="text-danger">{errors.email}</p>
                 ) : null}
               </FormControl>
-              <FormControl id="password">
+              <FormControl id="password" className="text-start">
                 <FormLabel>Password&nbsp;<span className="text-danger">*</span></FormLabel>
                 <InputGroup>
                   <Input

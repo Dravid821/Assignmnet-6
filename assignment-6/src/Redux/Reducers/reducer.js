@@ -108,20 +108,6 @@ export const datareducer = (state = initialState, action) => {
           totalPrice: state.totalPrice + action.payload.price, // Update total price
         };
       }
-      case REMOVE:
-        const itemIdToRemove = action.payload.id; // Id of the item to be removed
-        const itemToRemove = state.carts.find(
-          (item) => item.id === itemIdToRemove
-        ); // Find the item to be removed from the state
-        const updatedCart = state.carts.filter(
-          (item) => item.id !== itemIdToRemove
-        ); // Filter out the item to be removed from the state.carts array
-        return {
-          ...state,
-          carts: updatedCart,
-          qnty: state.qnty - itemToRemove.qnty, // Update quantity
-          totalPrice: state.totalPrice - itemToRemove.totalPrice, // Update total price
-        };
     default:
       return {
         ...state,

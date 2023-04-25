@@ -1,8 +1,6 @@
 import React from "react";
-import StarIcon from "@mui/icons-material/Star";
 import { MDBCard, MDBCardBody, MDBCardImage } from "mdb-react-ui-kit";
 import { NavLink } from "react-router-dom";
-
 import "../Asset/ProductData.scss";
 const CardData = ({ item }) => {
   return (

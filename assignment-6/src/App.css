@@ -39,3 +39,21 @@
 .bord{
   border-bottom-width: 0px !important;
 }
+.card2{
+  height: 150px !important ;
+  width:200px;
+  background-color: whitesmoke;
+}
+.box{
+  background-color: rgb(224, 224, 223);
+  width: 200px;
+  height: 40px;
+}
+.txt{
+  font-size: medium !important;
+  width: 40px;
+  background-color: rgb(33,37,41) !important;
+}
+.spin{
+  justify-content: center;
+}

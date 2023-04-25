@@ -96,7 +96,7 @@ export default function SignupCard() {
           <Box rounded={"lg"} boxShadow={"lg"} p={8} w={[300, 400, 500]}>
             <Stack spacing={3}>
               <Box>
-                <FormControl id="first_name">
+                <FormControl id="first_name" className="text-start">
                   <FormLabel>
                     First Name&nbsp;<span className="text-danger">*</span>
                   </FormLabel>
@@ -116,7 +116,7 @@ export default function SignupCard() {
                 </FormControl>
               </Box>
               <Box>
-                <FormControl id="lastName">
+                <FormControl id="lastName"  className="text-start">
                   <FormLabel>Last Name</FormLabel>
                   <Input
                     type="last_name"
@@ -133,7 +133,7 @@ export default function SignupCard() {
                   ) : null}
                 </FormControl>
               </Box>
-              <FormControl id="email">
+              <FormControl id="email"  className="text-start">
                 <FormLabel>
                   Email address&nbsp;<span className="text-danger">*</span>
                 </FormLabel>
@@ -151,7 +151,7 @@ export default function SignupCard() {
                   <p className="text-danger">{errors.email}</p>
                 ) : null}
               </FormControl>
-              <FormControl id="mobile">
+              <FormControl id="mobile"  className="text-start">
                 <FormLabel>
                   Mobile No.&nbsp;<span className="text-danger">*</span>
                 </FormLabel>
@@ -169,7 +169,7 @@ export default function SignupCard() {
                   <p className="text-danger">{errors.mobile}</p>
                 ) : null}
               </FormControl>
-              <FormControl id="password">
+              <FormControl id="password"  className="text-start">
                 <FormLabel>
                   Password&nbsp;<span className="text-danger">*</span>
                 </FormLabel>
@@ -199,7 +199,7 @@ export default function SignupCard() {
                   <p className="text-danger">{errors.password}</p>
                 ) : null}{" "}
               </FormControl>
-              <FormControl id="confirm_password">
+              <FormControl id="confirm_password"  className="text-start">
                 <FormLabel>
                   Confirm Password&nbsp;<span className="text-danger">*</span>
                 </FormLabel>

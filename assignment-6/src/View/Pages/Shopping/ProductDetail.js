@@ -5,34 +5,42 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
-import { ApiData } from "../Redux/Actions/action";
+import { ApiData } from "../../../Redux/Actions/action";
 import { NavLink } from "react-router-dom";
-import RatingComponent from "../View/Pages/Shopping/StartRating"
+import RatingComponent from "../../../Components/StartRating";
 import { useNavigate } from "react-router-dom";
-import Carousal from "./Carousal";
+import Carousal from "../../../Components/Carousal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Addtocart,removetocart } from "../Redux/Actions/action";
+import { Addtocart, removetocart } from "../../../Redux/Actions/action";
 const ProductDetail = () => {
   const data = useSelector((state) => state.datareducer.user);
+  const cartItems = useSelector((state) => state.datareducer.carts);
+  console.log("qnty",cartItems.qnty)
   let loggin = JSON.parse(localStorage.getItem("isLogin"));
-  console.log("id vise0",data);
+  console.log("id vise0", data);
   const { id } = useParams();
   const dispatch = useDispatch();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     if (isNaN(id)) {
-      //   navigate("*");
+      navigate("*");
       return;
     }
     dispatch(ApiData(id));
   }, []);
-  const sendcart = (item)=>{
-    const CartItem = {...data}
-    dispatch(Addtocart(CartItem))
-   }
+  const sendcart = (data) => {
+    dispatch(Addtocart(data));
+  };
   const BackToShop = () => {
     // navigate("/");
+  };
+  const increment = (item) => {
+    dispatch(Addtocart(item));
+  };
+
+  const decrement = (item) => {
+    dispatch(removetocart(item));
   };
   //Productdetail Page map data
   return (
@@ -62,7 +70,7 @@ const ProductDetail = () => {
                           <span>
                             <span class="badge bg-warning">
                               <div>
-                                <RatingComponent rating={data.rating}/>
+                                <RatingComponent rating={data.rating} />
                               </div>
                             </span>
                           </span>
@@ -81,22 +89,25 @@ const ProductDetail = () => {
                       <div class="d-flex text-start total font-weight-bold mt-4">
                         <span>Description: {data.description}</span>
                       </div>
-                      <div class="d-flex text-start total font-weight-bold mt-4">
-                        <span>qnty: {data.qnty}</span>
-                      </div>
                     </div>
                   </div>
                   <div className="col-md-12 col-sm-12 pt-5">
                     <div className="d-flex">
                       {loggin ? (
                         <>
-                            <button
-                              className="btn btn-primary btn-md m-2"
-                              type="button"
-                              onClick={()=>sendcart(data)}
-                            >
-                              Add To Cart
-                            </button>
+                        <div className="text-start">
+                          {/* <div class="d-flex text-start total font-weight-bold">
+                            <span className="btn" onClick={() => decrement(data)}> - </span>
+                            <span className="text-primary">{cartItems.length}</span>
+                            <span className="btn" onClick={() => increment(data)}> + </span>
+                          </div> */}
+                          <button
+                            className="btn btn-primary btn-md m-2"
+                            type="button"
+                            onClick={() => sendcart(data)}
+                          >
+                            Add To Cart
+                          </button>
                           <NavLink to={`/product`}>
                             <button
                               onClick={BackToShop}
@@ -107,6 +118,7 @@ const ProductDetail = () => {
                               Back To Shopping Page
                             </button>
                           </NavLink>
+                          </div>
                         </>
                       ) : (
                         <NavLink to={`/product`}>

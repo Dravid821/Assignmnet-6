@@ -54,12 +54,9 @@ const CardMap = () => {
               type="search"
               value={searchData}
               onChange={handleSearchInputChange}
-              className="form-control-sm "
+              className="form-control-sm box"
               placeholder="Search..."
             />
-            <div className="input-group-append">
-              <button className="btn btn-primary">Search</button>
-            </div>
           </div>
         </div>
         </form>
@@ -91,10 +88,10 @@ const CardMap = () => {
                 </div>
               ))
             ) : (
-              <div className="text-center">
-                <Spinner animation="border" role="status">
+              <div className="d-flex justiy-content-center">
+                {/* <Spinner className="spin" animation="border" role="status">
                   <span className="visually-hidden"></span>
-                </Spinner>
+                </Spinner> */}
               </div>
             )}
             <br />

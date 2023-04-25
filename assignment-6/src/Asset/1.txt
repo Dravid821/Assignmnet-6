@@ -166,3 +166,74 @@
           </button>
         </NavLink>
       </div> */}
+
+
+      /// cart manual code
+
+              {/* {cartItems.length === 0 ? (
+          <h2 className="mt-5 text-secondary">Cart Items is Empty</h2>
+        ) : (
+          cartItems.map((item) => {
+            return (
+              <>
+                <div className="container bg-light mt-4" key={item.id}>
+                  <div className="row align-items-center">
+                    <MDBTable className="bord" >
+                      <MDBTableBody >
+                        <tr className="bord">
+                          <th
+                            scope="row"
+                            style={{
+                              width: "150px",
+                              display: "flex",
+                              alignItems: "center",
+                            }}
+                          >
+                            <img
+                              src={item.thumbnail}
+                              fluid
+                              className="rounded-3"
+                              style={{ width: "100px", height: "80px" }}
+                              alt="Book"
+                            />
+                            <div className="flex-column justify-content-center ms-4">
+                              {item.title}
+                            </div>
+                          </th>
+                          <td className="align-middle justify-content-center">
+                            <p className="mb-0" style={{ fontWeight: "500" }}>
+                              ${item.price}
+                            </p>
+                          </td>
+                          <td className="align-middle">
+                            <div
+                              className="d-flex justify-content-center align-items-center gap-3"
+                              style={{ gap: "10px" }}
+                            >
+                              <span
+                                onClick={() => decrement(item)}
+                                className=""
+                              >
+                                -
+                              </span>
+                              <span className="text-primary">{item.qnty}</span>
+                              <span
+                                className=""
+                                onClick={() => increment(item)}
+                              >
+                                +
+                              </span>
+                            </div>
+                          </td>
+                          <td className="align-middle">
+                            <span>${item.qnty * item.price}</span>
+                          </td>
+                        </tr>
+                      </MDBTableBody>
+                    </MDBTable>
+                  </div>
+                </div>
+              </>
+            );
+          })
+        )} */}
