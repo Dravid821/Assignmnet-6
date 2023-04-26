@@ -1,5 +1,5 @@
 import React from 'react'
-
+// Error Page
 const Error = () => {
   return (
     <div className='text-center 'style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>

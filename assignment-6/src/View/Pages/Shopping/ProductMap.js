@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Spinner from "react-bootstrap/Spinner";
 import { carddata } from "../../../Redux/Actions/action";
 import ProductData from "../../../Components/ProductData";
 const CardMap = () => {
@@ -13,12 +12,13 @@ const CardMap = () => {
   useEffect(() => {
     dispatch(carddata());
   }, []);
+  // Filter Items For Search And Select Data.
   useEffect(() => {
     const filtered = items.products?.filter((item) => {
       const titleMatch = item.title
         .toLowerCase()
         .includes(searchData.toLowerCase());
-        console.log(titleMatch)
+      console.log(titleMatch);
       const categoryMatch =
         item.category.toLowerCase() === selectedCategory.toLowerCase() ||
         selectedCategory === "";
@@ -27,7 +27,6 @@ const CardMap = () => {
     setFilteredItems(filtered);
   }, [searchData, selectedCategory, items.products]);
 
-  // Product Data Map
   // Handle search input change
   const handleSearchInputChange = (e) => {
     setSearchData(e.target.value);
@@ -47,6 +46,7 @@ const CardMap = () => {
   };
   return (
     <>
+    {/* Search JSX */}
       <form onSubmit={handleSubmit}>
         <div className="p-2">
           <div className="input-group mb-3">
@@ -59,45 +59,45 @@ const CardMap = () => {
             />
           </div>
         </div>
-        </form>
-        <div className="container-fluid d-flex justify-content-between gap-3">
-          <div className=" text-start p-2">
-            <h5>Categories</h5>
-            <select
-              className="form-select"
-              value={selectedCategory}
-              onChange={handleCategorySelectChange}
-            >
-              <option value="">All</option>
-              <option value="smartphones">Smartphones</option>
-              <option value="laptops">Laptops</option>
-              <option value="fragrances">Fragrances</option>
-              <option value="skincare">Skincare</option>
-              <option value="groceries">Groceries</option>
-              <option value="home-decoration">Home-Decoration</option>
-            </select>
-          </div>
-          <div className="row  mt-3">
-            {filteredItems ? (
-             filteredItems.map((item) => (
-                <div
-                  key={item.id}
-                  className="col-12 col-md-6 col-lg-4 col-xl-3 mt-3 d-flex justify-content-center"
-                >
-                  <ProductData item={item} />
-                </div>
-              ))
-            ) : (
-              <div className="d-flex justiy-content-center">
-                {/* <Spinner className="spin" animation="border" role="status">
+      </form>
+      {/* Category Vise Select JSX */}
+      <div className="container-fluid d-flex justify-content-between gap-3">
+        <div className=" text-start p-2">
+          <h5>Categories</h5>
+          <select
+            className="form-select"
+            value={selectedCategory}
+            onChange={handleCategorySelectChange}
+          >
+            <option value="">All</option>
+            <option value="smartphones">Smartphones</option>
+            <option value="laptops">Laptops</option>
+            <option value="fragrances">Fragrances</option>
+            <option value="skincare">Skincare</option>
+            <option value="groceries">Groceries</option>
+            <option value="home-decoration">Home-Decoration</option>
+          </select>
+        </div>
+        <div className="row  mt-3">
+          {filteredItems ? (
+            filteredItems.map((item) => (
+              <div
+                key={item.id}
+                className="col-12 col-md-6 col-lg-4 col-xl-3 mt-3 d-flex justify-content-center"
+              >
+                <ProductData item={item} />
+              </div>
+            ))
+          ) : (
+            <div className="d-flex justiy-content-center">
+              {/* <Spinner className="spin" animation="border" role="status">
                   <span className="visually-hidden"></span>
                 </Spinner> */}
-              </div>
-            )}
-            <br />
-          </div>
+            </div>
+          )}
+          <br />
         </div>
-
+      </div>
     </>
   );
 };

@@ -9,37 +9,31 @@ import {
 } from "../Constant";
 let url = `https://dummyjson.com/products`;
 let url1 = (id = 1) => `https://dummyjson.com/products/${id}`;
-export const fetchcome = () => {
+export const FetchCome = () => {
   return {
     type: FETCH_DATA_COME,
   };
 };
-export const fetchsuccess = (user) => {
+export const FetchSuccess = (user) => {
   return {
     type: FETCH_DATA_SUCCESS,
     payload: user,
   };
 };
-export const fetcherror = (err) => {
+export const FetchError = (err) => {
   return {
     type: FETCH_DATA_ERROR,
     payload: err,
   };
 };
-export const setPage = (page) => {
-  return {
-    type: "SET_PAGE",
-    payload: page,
-  };
-};
-export const Addtocart = (item) => {
+export const AddToCart = (item) => {
   return {
       type: ADD_TO_CART,
       payload: item
 
   }
 }
-export const removetocart = (id) => {
+export const RemoveToCart = (id) => {
   return {
       type: REMOVE_TO_CART,
       payload: id,
@@ -53,20 +47,20 @@ export const remove = (id) => {
 
   }
 }
-//Api data fetch
+//Api data Fetch
 export const carddata = (skip) => {
   return (dispatch) => {
-    dispatch(fetchcome());
+    dispatch(FetchCome());
     axios
       .get(url)
       .then((res) => {
         const data = res.data;
-        dispatch(fetchsuccess(data));
+        dispatch(FetchSuccess(data));
         console.log(res.data);
       })
       .catch((err) => {
         const message = err.message;
-        dispatch(fetcherror(message));
+        dispatch(FetchError(message));
         console.log(err.message);
       });
   };
@@ -74,17 +68,17 @@ export const carddata = (skip) => {
 
 export const ApiData = (id) => {
   return (dispatch) => {
-    dispatch(fetchcome());
+    dispatch(FetchCome());
     axios
       .get(url1(id))
       .then((res) => {
         const data = res.data;
-        dispatch(fetchsuccess(data));
+        dispatch(FetchSuccess(data));
         console.log(res.data);
       })
       .catch((err) => {
         const message = err.message;
-        dispatch(fetcherror(message));
+        dispatch(FetchError(message));
         console.log(err.message);
       });
   };

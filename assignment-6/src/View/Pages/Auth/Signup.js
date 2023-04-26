@@ -20,7 +20,6 @@ import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { EncryptData } from "../../../Utils/PasswordEncry-Decry";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
-//   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 //Start Signup Function.
 export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false);

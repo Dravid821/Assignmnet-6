@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useEffect } from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import StarIcon from "@mui/icons-material/Star";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { ApiData } from "../../../Redux/Actions/action";
@@ -12,16 +10,19 @@ import { useNavigate } from "react-router-dom";
 import Carousal from "../../../Components/Carousal";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { Addtocart, removetocart } from "../../../Redux/Actions/action";
+import { AddToCart, removetocart } from "../../../Redux/Actions/action";
+// Product Detail Page 
 const ProductDetail = () => {
   const data = useSelector((state) => state.datareducer.user);
+  // Cart Items Value Comes From Reducer
   const cartItems = useSelector((state) => state.datareducer.carts);
-  console.log("qnty",cartItems.qnty)
+  console.log("qnty", cartItems.qnty);
   let loggin = JSON.parse(localStorage.getItem("isLogin"));
   console.log("id vise0", data);
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  // Navigation Condition
   useEffect(() => {
     if (isNaN(id)) {
       navigate("*");
@@ -29,18 +30,12 @@ const ProductDetail = () => {
     }
     dispatch(ApiData(id));
   }, []);
+  //Click Event To Send Cart Box In Items.
   const sendcart = (data) => {
-    dispatch(Addtocart(data));
+    dispatch(AddToCart(data));
   };
   const BackToShop = () => {
     // navigate("/");
-  };
-  const increment = (item) => {
-    dispatch(Addtocart(item));
-  };
-
-  const decrement = (item) => {
-    dispatch(removetocart(item));
   };
   //Productdetail Page map data
   return (
@@ -95,29 +90,29 @@ const ProductDetail = () => {
                     <div className="d-flex">
                       {loggin ? (
                         <>
-                        <div className="text-start">
-                          {/* <div class="d-flex text-start total font-weight-bold">
+                          <div className="text-start">
+                            {/* <div class="d-flex text-start total font-weight-bold">
                             <span className="btn" onClick={() => decrement(data)}> - </span>
                             <span className="text-primary">{cartItems.length}</span>
                             <span className="btn" onClick={() => increment(data)}> + </span>
                           </div> */}
-                          <button
-                            className="btn btn-primary btn-md m-2"
-                            type="button"
-                            onClick={() => sendcart(data)}
-                          >
-                            Add To Cart
-                          </button>
-                          <NavLink to={`/product`}>
                             <button
-                              onClick={BackToShop}
-                              className="btn btn-outline-primary btn-md m-2"
+                              className="btn btn-primary btn-md m-2"
                               type="button"
+                              onClick={() => sendcart(data)}
                             >
-                              <ShoppingCartIcon />
-                              Back To Shopping Page
+                              Add To Cart
                             </button>
-                          </NavLink>
+                            <NavLink to={`/product`}>
+                              <button
+                                onClick={BackToShop}
+                                className="btn btn-outline-primary btn-md m-2"
+                                type="button"
+                              >
+                                <ShoppingCartIcon />
+                                Back To Shopping Page
+                              </button>
+                            </NavLink>
                           </div>
                         </>
                       ) : (
@@ -139,6 +134,7 @@ const ProductDetail = () => {
             </div>
           </section>
         ) : (
+          // Page Refresh Then Loader set 
           <div className="text-center">
             <Spinner animation="border" role="status">
               <span className="visually-hidden"></span>
